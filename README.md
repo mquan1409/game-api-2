@@ -122,6 +122,13 @@
 
 Note: All endpoints return appropriate HTTP status codes and error messages. Authentication and authorization mechanisms are not specified in this API and should be implemented separately.
 
+## Installation
+
+1. Install Go
+2. Install Docker
+3. Install the AWS CLI.
+4. Install the SAM CLI.
+
 ## Testing
 
 To run the API locally:
