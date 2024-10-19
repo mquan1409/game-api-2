@@ -28,6 +28,9 @@ func init() {
 		Endpoint: aws.String(cfg.DynamoDBEndpoint),
 		Region:   aws.String(cfg.DynamoDBRegion),
 	})
+	fmt.Println("DynamoDBEndpoint:", cfg.DynamoDBEndpoint)
+	fmt.Println("DynamoDBRegion:", cfg.DynamoDBRegion)
+	fmt.Println("TableName:", cfg.TableName)
 	if err != nil {
 		fmt.Println("Error creating session:", err)
 		return

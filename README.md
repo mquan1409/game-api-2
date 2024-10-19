@@ -129,16 +129,22 @@ Note: All endpoints return appropriate HTTP status codes and error messages. Aut
 3. Install the AWS CLI.
 4. Install the SAM CLI.
 
-## Testing
+## Running the API
 
 To run the API locally:
 
-1. Run `./scripts/run_dynamodb.sh` to start a local DynamoDB instance.
-2. Run `./scripts/create_table.sh` to create the necessary tables.
-3. Run `./scripts/seed_table.sh` to seed the tables with some data.
-4. Run `source ./scripts/set_env.sh` to set the environment variables.
+1. Run `source ./scripts/set_env.sh` to set the environment variables.
+2. Run `./scripts/run_dynamodb.sh` to start a local DynamoDB instance.
+3. Run `./scripts/create_table.sh` to create the necessary tables.
+4. Run `./scripts/seed_table.sh` to seed the tables with some data.
 5. Run `./scripts/sam_build.sh` to build the SAM application.
 6. Run `./scripts/sam_run.sh` to run the SAM application.
 
+## Testing
+Prerequisites: `source ./scripts/set_env.sh`
+- Unit tests are located in `./tests/unit` and can be run with `go_test ./...`.
+- Integration tests are located in `./tests/integration` and can be run with `go_test ./...`.
+
 Notes:
 - You can modify the `./scripts/set_env.sh` file to set the environment variables to your desired values based on your AWS IAM user config.
+- For convenience, you can add set_env.sh to your shell's profile so that the environment variables are automatically set when you open a new terminal session by running `echo "source <path-to-game-api-2>/scripts/set_env.sh" >> ~/.zshrc` or `echo "source <path-to-game-api-2>/scripts/set_env.sh" >> ~/.bashrc`.

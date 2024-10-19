@@ -91,7 +91,7 @@ Resources:
             Method: DELETE
       Policies:
         - DynamoDBCrudPolicy:
-            TableName: dev-table
+            TableName: !Ref DynamoDBTable
 
   GameFunction:
     Type: AWS::Serverless::Function
@@ -126,7 +126,7 @@ Resources:
             Method: DELETE
       Policies:
         - DynamoDBCrudPolicy:
-            TableName: !Ref DevDynamoDBTable
+            TableName: !Ref DynamoDBTable
 
   MatchFunction:
     Type: AWS::Serverless::Function
@@ -161,7 +161,7 @@ Resources:
             Method: DELETE
       Policies:
         - DynamoDBCrudPolicy:
-            TableName: !Ref DevDynamoDBTable
+            TableName: !Ref DynamoDBTable
 
 Outputs:
   UserFunction:

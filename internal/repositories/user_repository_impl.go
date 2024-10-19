@@ -39,16 +39,12 @@ func (r *DynamoDBUserRepository) GetUser(id models.UserID) (*models.User, error)
 	result, err := r.db.GetItem(input)
 	
 	if err != nil {
-		fmt.Printf("Error getting item from DynamoDB: %v\n", err)
 		return nil, err
 	}
 
 	if result.Item == nil {
-		fmt.Printf("User not found in DynamoDB\n")
 		return nil, errors.New("user not found")
 	}
-
-	fmt.Printf("Successfully retrieved user from DynamoDB\n")
 
 	return r.unmarshalUserFromDynamoDB(result.Item)
 }

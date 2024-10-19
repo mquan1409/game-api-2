@@ -1,1 +1,1 @@
-./tools/setup_users.sh && ./tools/setup_games.sh && ./tools/setup_matches.sh && ./tools/setup_gamestat.sh && ./tools/setup_leaderboard.sh
+$BASE_WORK_DIR/scripts/tools/setup_users.sh && $BASE_WORK_DIR/scripts/tools/setup_games.sh && $BASE_WORK_DIR/scripts/tools/setup_matches.sh && $BASE_WORK_DIR/scripts/tools/setup_gamestat.sh && $BASE_WORK_DIR/scripts/tools/setup_leaderboard.sh
