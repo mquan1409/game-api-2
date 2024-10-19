@@ -21,16 +21,9 @@ var userHandler handlers.UserHandler
 func init() {
 	// Load configuration based on environment
 	env := os.Getenv("APP_ENV")
-	fmt.Println("env:", env)
-	fmt.Println("DYNAMODB_ENDPOINT:", os.Getenv("DYNAMODB_ENDPOINT"))
-	fmt.Println("DYNAMODB_REGION:", os.Getenv("DYNAMODB_REGION"))
-	fmt.Println("DYNAMODB_TABLE:", os.Getenv("DYNAMODB_TABLE"))
 	cfg := config.LoadConfig(env)
 
 	// Create the session
-	fmt.Println("DynamoDBEndpoint:", cfg.DynamoDBEndpoint)
-	fmt.Println("DynamoDBRegion:", cfg.DynamoDBRegion)
-	fmt.Println("TableName:", cfg.TableName)
 	sess, err := session.NewSession(&aws.Config{
 		Endpoint: aws.String(cfg.DynamoDBEndpoint),
 		Region:   aws.String(cfg.DynamoDBRegion),
@@ -40,7 +33,6 @@ func init() {
 		return
 	}
 	db := dynamodb.New(sess)
-	fmt.Println(db)
 
 	// Initialize repository
 	userRepository := repositories.NewDynamoDBUserRepository(db, cfg.TableName)
