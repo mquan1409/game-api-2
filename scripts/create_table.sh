@@ -1,0 +1,1 @@
+aws dynamodb create-table --cli-input-json file://../internal/config/create-table.json --endpoint-url http://localhost:8000

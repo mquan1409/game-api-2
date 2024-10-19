@@ -1,0 +1,139 @@
+{
+    "dev-table": [
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "Leaderboard.soccer"},
+                    "Range": {"S": "elo.00002.user1"},
+                    "UserId": {"S": "user1"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "Leaderboard.soccer"},
+                    "Range": {"S": "elo.00002.user2"},
+                    "UserId": {"S": "user2"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "Leaderboard.soccer"},
+                    "Range": {"S": "elo.00001.user3"},
+                    "UserId": {"S": "user3"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "Leaderboard.soccer"},
+                    "Range": {"S": "elo.00001.dianadancer"},
+                    "UserId": {"S": "dianadancer"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "Leaderboard.soccer"},
+                    "Range": {"S": "elo.00000.eveexplorer"},
+                    "UserId": {"S": "eveexplorer"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "Leaderboard.pool"},
+                    "Range": {"S": "elo.00003.user2"},
+                    "UserId": {"S": "user2"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "Leaderboard.pool"},
+                        "Range": {"S": "elo.00003.eveexplorer"},
+                    "UserId": {"S": "eveexplorer"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "Leaderboard.pool"},
+                    "Range": {"S": "elo.00002.user1"},
+                    "UserId": {"S": "user1"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "Leaderboard.pool"},
+                    "Range": {"S": "elo.00002.user3"},
+                    "UserId": {"S": "user3"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "Leaderboard.pool"},
+                    "Range": {"S": "elo.00000.dianadancer"},
+                    "UserId": {"S": "dianadancer"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "Leaderboard.pickleball"},
+                    "Range": {"S": "elo.00011.dianadancer"},
+                    "UserId": {"S": "dianadancer"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "Leaderboard.pickleball"},
+                    "Range": {"S": "elo.00011.eveexplorer"},
+                    "UserId": {"S": "eveexplorer"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "Leaderboard.pickleball"},
+                    "Range": {"S": "elo.00009.user1"},
+                    "UserId": {"S": "user1"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "Leaderboard.pickleball"},
+                    "Range": {"S": "elo.00009.user2"},
+                    "UserId": {"S": "user2"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "Leaderboard.pickleball"},
+                    "Range": {"S": "elo.00000.user3"},
+                    "UserId": {"S": "user3"}
+                }
+            }
+        }
+    ]
+}

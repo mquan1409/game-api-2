@@ -1,0 +1,259 @@
+{
+    "dev-table": [
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "GameStat.user1"},
+                    "Range": {"S": "soccer"},
+                    "Attributes": {
+                        "M": {
+                            "elo": {"N": "2"},
+                            "goals": {"N": "1"},
+                            "assists": {"N": "1"},
+                            "shots_on_target": {"N": "3"},
+                            "passes_completed": {"N": "20"}
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "GameStat.user1"},
+                    "Range": {"S": "pool"},
+                    "Attributes": {
+                        "M": {
+                            "elo": {"N": "2"},
+                            "banks": {"N": "2"},
+                            "pockets": {"N": "3"},
+                            "breaks": {"N": "1"},
+                            "safeties": {"N": "2"}
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "GameStat.user1"},
+                    "Range": {"S": "pickleball"},
+                    "Attributes": {
+                        "M": {
+                            "elo": {"N": "9"},
+                            "dinks": {"N": "5"},
+                            "volleys": {"N": "7"},
+                            "serves": {"N": "10"},
+                            "third_shot_drops": {"N": "3"}
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "GameStat.user2"},
+                    "Range": {"S": "soccer"},
+                    "Attributes": {
+                        "M": {
+                            "elo": {"N": "2"},
+                            "goals": {"N": "1"},
+                            "assists": {"N": "0"},
+                            "shots_on_target": {"N": "2"},
+                            "passes_completed": {"N": "15"}
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "GameStat.user2"},
+                    "Range": {"S": "pool"},
+                    "Attributes": {
+                        "M": {
+                            "elo": {"N": "3"},
+                            "banks": {"N": "1"},
+                            "pockets": {"N": "4"},
+                            "breaks": {"N": "2"},
+                            "safeties": {"N": "1"}
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "GameStat.user2"},
+                    "Range": {"S": "pickleball"},
+                    "Attributes": {
+                        "M": {
+                            "elo": {"N": "9"},
+                            "dinks": {"N": "6"},
+                            "volleys": {"N": "8"},
+                            "serves": {"N": "9"},
+                            "third_shot_drops": {"N": "4"}
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "GameStat.user3"},
+                    "Range": {"S": "soccer"},
+                    "Attributes": {
+                        "M": {
+                            "elo": {"N": "1"},
+                            "goals": {"N": "1"},
+                            "assists": {"N": "0"},
+                            "shots_on_target": {"N": "2"},
+                            "passes_completed": {"N": "18"}
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "GameStat.user3"},
+                    "Range": {"S": "pool"},
+                    "Attributes": {
+                        "M": {
+                            "elo": {"N": "2"},
+                            "banks": {"N": "3"},
+                            "pockets": {"N": "2"},
+                            "breaks": {"N": "0"},
+                            "safeties": {"N": "3"}
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "GameStat.user3"},
+                    "Range": {"S": "pickleball"},
+                    "Attributes": {
+                        "M": {
+                            "elo": {"N": "0"},
+                            "dinks": {"N": "0"},
+                            "volleys": {"N": "0"},
+                            "serves": {"N": "0"},
+                            "third_shot_drops": {"N": "0"}
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "GameStat.dianadancer"},
+                    "Range": {"S": "soccer"},
+                    "Attributes": {
+                        "M": {
+                            "elo": {"N": "1"},
+                            "goals": {"N": "0"},
+                            "assists": {"N": "1"},
+                            "shots_on_target": {"N": "1"},
+                            "passes_completed": {"N": "22"}
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "GameStat.dianadancer"},
+                    "Range": {"S": "pool"},
+                    "Attributes": {
+                        "M": {
+                            "elo": {"N": "0"},
+                            "banks": {"N": "0"},
+                            "pockets": {"N": "0"},
+                            "breaks": {"N": "0"},
+                            "safeties": {"N": "0"}
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "GameStat.dianadancer"},
+                    "Range": {"S": "pickleball"},
+                    "Attributes": {
+                        "M": {
+                            "elo": {"N": "11"},
+                            "dinks": {"N": "7"},
+                            "volleys": {"N": "6"},
+                            "serves": {"N": "11"},
+                            "third_shot_drops": {"N": "5"}
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "GameStat.eveexplorer"},
+                    "Range": {"S": "soccer"},
+                    "Attributes": {
+                        "M": {
+                            "elo": {"N": "0"},
+                            "goals": {"N": "0"},
+                            "assists": {"N": "0"},
+                            "shots_on_target": {"N": "0"},
+                            "passes_completed": {"N": "0"}
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "GameStat.eveexplorer"},
+                    "Range": {"S": "pool"},
+                    "Attributes": {
+                        "M": {
+                            "elo": {"N": "3"},
+                            "banks": {"N": "2"},
+                            "pockets": {"N": "3"},
+                            "breaks": {"N": "1"},
+                            "safeties": {"N": "2"}
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "GameStat.eveexplorer"},
+                    "Range": {"S": "pickleball"},
+                    "Attributes": {
+                        "M": {
+                            "elo": {"N": "11"},
+                            "dinks": {"N": "8"},
+                            "volleys": {"N": "5"},
+                            "serves": {"N": "10"},
+                            "third_shot_drops": {"N": "6"}
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

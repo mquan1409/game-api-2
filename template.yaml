@@ -1,0 +1,180 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Game API SAM Template
+
+Parameters:
+  AppEnvironment:
+    Type: String
+    Default: production
+    Description: The application environment (e.g., development, staging, production)
+  ProdDynamoDBTable:
+    Type: String
+    Default: prod-table
+    Description: The DynamoDB table name
+  ProdDynamoDBRegion:
+    Type: String
+    Default: us-east-1
+    Description: The DynamoDB region
+  ProdDynamoDBEndpoint:
+    Type: String
+    Default: !Sub "https://dynamodb.${ProdDynamoDBRegion}.amazonaws.com"
+    Description: The DynamoDB endpoint (dynamically determined by region)
+  DevDynamoDBTable:
+    Type: String
+    Default: dev-table
+    Description: The DynamoDB table name
+  DevDynamoDBRegion:
+    Type: String
+    Default: us-east-1
+    Description: The DynamoDB region
+  DevDynamoDBEndpoint:
+    Type: String
+    Default: http://host.docker.internal:8000
+    Description: The DynamoDB endpoint
+
+Globals:
+  Function:
+    Timeout: 30
+    Runtime: go1.x
+    Environment:
+      Variables:
+        APP_ENV: !Ref AppEnvironment
+        DYNAMODB_TABLE: !If 
+          - IsProduction
+          - !Ref ProdDynamoDBTable
+          - !Ref DevDynamoDBTable
+        DYNAMODB_ENDPOINT: !If 
+          - IsProduction
+          - !Ref ProdDynamoDBEndpoint
+          - !Ref DevDynamoDBEndpoint
+        DYNAMODB_REGION: !If 
+          - IsProduction
+          - !Ref ProdDynamoDBRegion
+          - !Ref DevDynamoDBRegion
+
+Resources:
+  UserFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./cmd/user/
+      Handler: bootstrap.router
+      Events:
+        GetUser:
+          Type: Api
+          Properties:
+            Path: /users/{id}
+            Method: GET
+        GetUsersByPrefix:
+          Type: Api
+          Properties:
+            Path: /users
+            Method: GET
+        GetUserGameStats:
+          Type: Api
+          Properties:
+            Path: /users/{userId}/games/{gameId}/stats
+            Method: GET
+        CreateUser:
+          Type: Api
+          Properties:
+            Path: /users
+            Method: POST
+        UpdateUser:
+          Type: Api
+          Properties:
+            Path: /users/{id}
+            Method: PUT
+        DeleteUser:
+          Type: Api
+          Properties:
+            Path: /users/{id}
+            Method: DELETE
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: dev-table
+
+  GameFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./cmd/game/
+      Handler: bootstrap.router
+      Events:
+        GetGame:
+          Type: Api
+          Properties:
+            Path: /games/{id}
+            Method: GET
+        GetGameLeaderboard:
+          Type: Api
+          Properties:
+            Path: /games/{gameId}/leaderboard/{attribute}
+            Method: GET
+        CreateGame:
+          Type: Api
+          Properties:
+            Path: /games
+            Method: POST
+        UpdateGame:
+          Type: Api
+          Properties:
+            Path: /games/{id}
+            Method: PUT
+        DeleteGame:
+          Type: Api
+          Properties:
+            Path: /games/{id}
+            Method: DELETE
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DevDynamoDBTable
+
+  MatchFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./cmd/match/
+      Handler: bootstrap.router
+      Events:
+        GetMatch:
+          Type: Api
+          Properties:
+            Path: /matches/{gameId}/{matchId}/{dateId}
+            Method: GET
+        GetMatches:
+          Type: Api
+          Properties:
+            Path: /matches
+            Method: GET
+        CreateMatch:
+          Type: Api
+          Properties:
+            Path: /matches
+            Method: POST
+        UpdateMatch:
+          Type: Api
+          Properties:
+            Path: /matches/{id}
+            Method: PUT
+        DeleteMatch:
+          Type: Api
+          Properties:
+            Path: /matches/{gameId}/{matchId}/{dateId}
+            Method: DELETE
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DevDynamoDBTable
+
+Outputs:
+  UserFunction:
+    Description: "User Lambda Function ARN"
+    Value: !GetAtt UserFunction.Arn
+  GameFunction:
+    Description: "Game Lambda Function ARN"
+    Value: !GetAtt GameFunction.Arn
+  MatchFunction:
+    Description: "Match Lambda Function ARN"
+    Value: !GetAtt MatchFunction.Arn
+
+Conditions:
+  IsProduction: !Equals 
+    - !Ref AppEnvironment
+    - "production"

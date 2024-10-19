@@ -1,0 +1,76 @@
+{
+    "dev-table": [
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "USER_INFO-prefix:u"},
+                    "Range": {"S": "user1"},
+                    "Username": {"S": "AliceWonder"},
+                    "GamesPlayed": {"L": [
+                        {"S": "soccer"},
+                        {"S": "pool"},
+                        {"S": "pickleball"}
+                    ]},
+                    "Email": {"S": "alice.wonder@example.com"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "USER_INFO-prefix:u"},
+                    "Range": {"S": "user2"},
+                    "GamesPlayed": {"L": [
+                        {"S": "soccer"},
+                        {"S": "pool"},
+                        {"S": "pickleball"}
+                    ]},
+                    "Username": {"S": "BobBuilder"},
+                    "Email": {"S": "bob.builder@example.com"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "USER_INFO-prefix:u"},
+                    "Range": {"S": "user3"},
+                    "GamesPlayed": {"L": [
+                        {"S": "soccer"},
+                        {"S": "pool"}
+                    ]},
+                    "Username": {"S": "CharlieChaplin"},
+                    "Email": {"S": "charlie.chaplin@example.com"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "USER_INFO-prefix:d"},
+                    "Range": {"S": "dianadancer"},
+                    "GamesPlayed": {"L": [
+                        {"S": "soccer"},
+                        {"S": "pickleball"}
+                    ]},
+                    "Username": {"S": "DianaDancer"},
+                    "Email": {"S": "dianadancer@example.com"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "USER_INFO-prefix:e"},
+                    "Range": {"S": "eveexplorer"},
+                    "GamesPlayed": {"L": [
+                        {"S": "pool"},
+                        {"S": "pickleball"}
+                    ]},
+                    "Username": {"S": "EveExplorer"},
+                    "Email": {"S": "eveexplorer@example.com"}
+                }
+            }
+        }
+    ]
+}

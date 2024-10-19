@@ -1,0 +1,15 @@
+{
+    "TableName": "dev-table",
+    "KeySchema": [
+      { "AttributeName": "Id", "KeyType": "HASH" },
+      { "AttributeName": "Range", "KeyType": "RANGE" }
+    ],
+    "AttributeDefinitions": [
+      { "AttributeName": "Id", "AttributeType": "S" },
+      { "AttributeName": "Range", "AttributeType": "S" }
+    ],
+    "ProvisionedThroughput": {
+      "ReadCapacityUnits": 1,
+      "WriteCapacityUnits": 1
+    }
+}
