@@ -148,4 +148,3 @@ Prerequisites: `source ./scripts/set_env.sh`
 Notes:
 - You can modify the `./scripts/set_env.sh` file to set the environment variables to your desired values based on your AWS IAM user config.
 - For convenience, you can add set_env.sh to your shell's profile so that the environment variables are automatically set when you open a new terminal session by running `echo "source <path-to-game-api-2>/scripts/set_env.sh" >> ~/.zshrc` or `echo "source <path-to-game-api-2>/scripts/set_env.sh" >> ~/.bashrc`.
-test
