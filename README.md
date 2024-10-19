@@ -121,3 +121,17 @@
    - Delete a match
 
 Note: All endpoints return appropriate HTTP status codes and error messages. Authentication and authorization mechanisms are not specified in this API and should be implemented separately.
+
+## Testing
+
+To run the API locally:
+
+1. Run `./scripts/run_dynamodb.sh` to start a local DynamoDB instance.
+2. Run `./scripts/create_table.sh` to create the necessary tables.
+3. Run `./scripts/seed_table.sh` to seed the tables with some data.
+4. Run `source ./scripts/set_env.sh` to set the environment variables.
+5. Run `./scripts/sam_build.sh` to build the SAM application.
+6. Run `./scripts/sam_run.sh` to run the SAM application.
+
+Notes:
+- You can modify the `./scripts/set_env.sh` file to set the environment variables to your desired values based on your AWS IAM user config.
