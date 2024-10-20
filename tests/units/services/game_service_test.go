@@ -47,12 +47,12 @@ func TestGameService(t *testing.T) {
 		leaderboard, err := gameService.GetGameLeaderboard("soccer", "elo")
 		assert.NoError(t, err)
 		assert.NotEmpty(t, leaderboard)
-		assert.Equal(t, 5, len(leaderboard))
-		assert.Equal(t, models.UserID("user2"), leaderboard[0])
-		assert.Equal(t, models.UserID("user1"), leaderboard[1])
-		assert.Equal(t, models.UserID("user3"), leaderboard[2])
-		assert.Equal(t, models.UserID("dianadancer"), leaderboard[3])
-		assert.Equal(t, models.UserID("eveexplorer"), leaderboard[4])
+		assert.Equal(t, 5, len(leaderboard.UserIDs))
+		assert.Equal(t, models.UserID("user2"), leaderboard.UserIDs[0])
+		assert.Equal(t, models.UserID("user1"), leaderboard.UserIDs[1])
+		assert.Equal(t, models.UserID("user3"), leaderboard.UserIDs[2])
+		assert.Equal(t, models.UserID("dianadancer"), leaderboard.UserIDs[3])
+		assert.Equal(t, models.UserID("eveexplorer"), leaderboard.UserIDs[4])
 	})
 
 	// Test GetBoundedGameLeaderboard
@@ -60,10 +60,10 @@ func TestGameService(t *testing.T) {
 		boundedLeaderboard, err := gameService.GetBoundedGameLeaderboard("soccer", "elo", 3)
 		assert.NoError(t, err)
 		assert.NotEmpty(t, boundedLeaderboard)
-		assert.Equal(t, 3, len(boundedLeaderboard))
-		assert.Equal(t, models.UserID("user2"), boundedLeaderboard[0])
-		assert.Equal(t, models.UserID("user1"), boundedLeaderboard[1])
-		assert.Equal(t, models.UserID("user3"), boundedLeaderboard[2])
+		assert.Equal(t, 3, len(boundedLeaderboard.UserIDs))
+		assert.Equal(t, models.UserID("user2"), boundedLeaderboard.UserIDs[0])
+		assert.Equal(t, models.UserID("user1"), boundedLeaderboard.UserIDs[1])
+		assert.Equal(t, models.UserID("user3"), boundedLeaderboard.UserIDs[2])
 	})
 
 	// Test CreateGame
@@ -144,11 +144,11 @@ func TestGameService(t *testing.T) {
 			// Verify that the leaderboard items for the removed attributes were deleted
 			leaderboard, err := gameService.GetGameLeaderboard(createdGame.GameID, "time")
 			assert.NoError(t, err)
-			assert.Empty(t, leaderboard)
+			assert.Empty(t, leaderboard.UserIDs)
 
 			leaderboard, err = gameService.GetGameLeaderboard(createdGame.GameID, "level")
 			assert.NoError(t, err)
-			assert.Empty(t, leaderboard)
+			assert.Empty(t, leaderboard.UserIDs)
 		})
 
 		// Clean up: Delete the game used for update tests
@@ -172,7 +172,7 @@ func TestGameService(t *testing.T) {
 		// Verify leaderboard items exist
 		leaderboard, err := gameService.GetGameLeaderboard(models.GameID("tempgame"), models.AttributeName("score"))
 		assert.NoError(t, err)
-		assert.Equal(t, 2, len(leaderboard))
+		assert.Equal(t, 2, len(leaderboard.UserIDs))
 
 		err = gameService.DeleteGame(createdGame.GameID)
 		assert.NoError(t, err)
@@ -184,7 +184,7 @@ func TestGameService(t *testing.T) {
 		// Verify leaderboard items are also deleted
 		leaderboard, err = gameService.GetGameLeaderboard(models.GameID("tempgame"), models.AttributeName("score"))
 		assert.NoError(t, err)
-		assert.Equal(t, 0, len(leaderboard))
+		assert.Equal(t, 0, len(leaderboard.UserIDs))
 	})
 
 	// Scan the entire table after tests

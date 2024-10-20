@@ -57,6 +57,7 @@ func router(req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, 
 			if limit, ok := req.QueryStringParameters["limit"]; ok {
 				// GET /games/{gameId}/leaderboard/{attribute}?limit={limit}
 				req.QueryStringParameters["limit"] = limit
+				return gameHandler.GetBoundedLeaderboard(req)
 			}
 			return gameHandler.GetLeaderboard(req)
 		}
