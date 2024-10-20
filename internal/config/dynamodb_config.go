@@ -1,15 +1,11 @@
 package config
 
-import "os"
+import (
+	"os"
+	"github.com/mquan1409/game-api/internal/models"
+)
 
-type Config struct {
-	DynamoDBEndpoint string
-	DynamoDBRegion   string
-	TableName        string
-	// Add other configuration fields as needed
-}
-
-func LoadConfig(env string) Config {
+func LoadConfig(env string) models.Config {
 	switch env {
 	case "production":
 		return loadProductionConfig()
@@ -18,16 +14,16 @@ func LoadConfig(env string) Config {
 	}
 }
 
-func loadProductionConfig() Config {
-	return Config{
+func loadProductionConfig() models.Config {
+	return models.Config{
 		DynamoDBEndpoint: os.Getenv("DYNAMODB_ENDPOINT"),
 		DynamoDBRegion:   os.Getenv("DYNAMODB_REGION"),
 		TableName:        os.Getenv("DYNAMODB_TABLE"),
 	}
 }
 
-func loadDevelopmentConfig() Config {
-	return Config{
+func loadDevelopmentConfig() models.Config {
+	return models.Config{
 		DynamoDBEndpoint: os.Getenv("DYNAMODB_ENDPOINT"),
 		DynamoDBRegion:   os.Getenv("DYNAMODB_REGION"),
 		TableName:        os.Getenv("DYNAMODB_TABLE"),

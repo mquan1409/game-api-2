@@ -47,12 +47,9 @@ func (h *GameHandlerImpl) GetGame(event events.APIGatewayProxyRequest) (events.A
 func (h *GameHandlerImpl) GetLeaderboard(event events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	gameID := models.GameID(event.PathParameters["gameId"])
 	attribute := models.AttributeName(event.PathParameters["attribute"])
-	limit := -1
-	if limitStr, ok := event.QueryStringParameters["limit"]; ok {
-		limit, _ = strconv.Atoi(limitStr)
-	}
-
-	leaderboard, err := h.gameService.GetBoundedGameLeaderboard(gameID, attribute, limit)
+	var leaderboard *models.LeaderBoard
+	var err error
+	leaderboard, err = h.gameService.GetGameLeaderboard(gameID, attribute)
 	if err != nil {
 		return events.APIGatewayProxyResponse{
 			StatusCode: http.StatusInternalServerError,
@@ -74,6 +71,33 @@ func (h *GameHandlerImpl) GetLeaderboard(event events.APIGatewayProxyRequest) (e
 	}, nil
 }
 
+func (h *GameHandlerImpl) GetBoundedLeaderboard(event events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+	gameID := models.GameID(event.PathParameters["gameId"])
+	attribute := models.AttributeName(event.PathParameters["attribute"])
+	limit, _ := strconv.Atoi(event.QueryStringParameters["limit"])
+	var leaderboard *models.BoundedLeaderboard
+	var err error
+	leaderboard, err = h.gameService.GetBoundedGameLeaderboard(gameID, attribute, limit)
+	if err != nil {
+		return events.APIGatewayProxyResponse{
+			StatusCode: http.StatusInternalServerError,
+			Body:       err.Error(),
+		}, nil
+	}
+
+	leaderboardJSON, err := json.Marshal(leaderboard)
+	if err != nil {
+		return events.APIGatewayProxyResponse{
+			StatusCode: http.StatusInternalServerError,
+			Body:       "Failed to marshal leaderboard data",
+		}, nil
+	}
+
+	return events.APIGatewayProxyResponse{
+		StatusCode: http.StatusOK,
+		Body:       string(leaderboardJSON),
+	}, nil
+}
 func (h *GameHandlerImpl) CreateGame(event events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	var game models.Game
 	err := json.Unmarshal([]byte(event.Body), &game)

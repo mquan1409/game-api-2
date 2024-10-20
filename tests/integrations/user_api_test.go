@@ -13,9 +13,9 @@ import (
 	"github.com/mquan1409/game-api/internal/utils"
 )
 
-const baseURL = "http://127.0.0.1:3000"
 
 func TestUserAPI(t *testing.T) {
+	baseURL := config.LoadBaseURL()
 	// Load test configuration
 	cfg := config.LoadConfig("development")
 

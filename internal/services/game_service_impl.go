@@ -22,20 +22,20 @@ func (s *GameServiceImpl) GetGame(id models.GameID) (*models.Game, error) {
 	return s.gameRepository.GetGame(id)
 }
 
-func (s *GameServiceImpl) GetGameLeaderboard(gameID models.GameID, attribute models.AttributeName) ([]models.UserID, error) {
+func (s *GameServiceImpl) GetGameLeaderboard(gameID models.GameID, attribute models.AttributeName) (*models.LeaderBoard, error) {
 	leaderboard, err := s.leaderboardRepository.GetLeaderboard(gameID, attribute)
 	if err != nil {
 		return nil, err
 	}
-	return leaderboard.UserIDs, nil
+	return &leaderboard, nil
 }
 
-func (s *GameServiceImpl) GetBoundedGameLeaderboard(gameID models.GameID, attribute models.AttributeName, limit int) ([]models.UserID, error) {
+func (s *GameServiceImpl) GetBoundedGameLeaderboard(gameID models.GameID, attribute models.AttributeName, limit int) (*models.BoundedLeaderboard, error) {
 	boundedLeaderboard, err := s.leaderboardRepository.GetBoundedLeaderboard(gameID, attribute, limit)
 	if err != nil {
 		return nil, err
 	}
-	return boundedLeaderboard.UserIDs, nil
+	return &boundedLeaderboard, nil
 }
 
 func (s *GameServiceImpl) CreateGame(game *models.Game) (*models.Game, error) {

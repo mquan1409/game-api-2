@@ -4,10 +4,10 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
-	"github.com/mquan1409/game-api/internal/config"
+	"github.com/mquan1409/game-api/internal/models"
 )
 
-func SetupTestDB(cfg *config.Config) (*dynamodb.DynamoDB, error) {
+func SetupTestDB(cfg *models.Config) (*dynamodb.DynamoDB, error) {
 	// Configure AWS session with endpoint and region
 	sess, err := session.NewSession(&aws.Config{
 		Endpoint: aws.String(cfg.DynamoDBEndpoint),
