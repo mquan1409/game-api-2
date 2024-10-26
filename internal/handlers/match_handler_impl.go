@@ -47,8 +47,8 @@ func (h *MatchHandlerImpl) GetMatch(event events.APIGatewayProxyRequest) (events
 }
 
 func (h *MatchHandlerImpl) GetMatchesByGameAndDate(event events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-	gameID := models.GameID(event.QueryStringParameters["game"])
-	dateID := models.DateID(event.QueryStringParameters["date"])
+	gameID := models.GameID(event.QueryStringParameters["gameId"])
+	dateID := models.DateID(event.QueryStringParameters["dateId"])
 
 	matches, err := h.matchService.GetMatchesByGameAndDate(gameID, dateID)
 	if err != nil {

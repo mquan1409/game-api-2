@@ -4,7 +4,7 @@
 
 ### User Service
 
-1. `GET /users/{id}`
+1. `GET /users/{userId}`
    - Get user by ID
 2. `GET /users?prefix={prefix}`
    - Get users with usernames starting with the given prefix
@@ -21,7 +21,7 @@
        "GamesPlayed": ["string"]
      }
      ```
-5. `PUT /users/{id}`
+5. `PUT /users/{userId}`
    - Update an existing user
    - Input model:
      ```json
@@ -31,12 +31,12 @@
        "GamesPlayed": ["string"]
      }
      ```
-6. `DELETE /users/{id}`
+6. `DELETE /users/{userId}`
    - Delete a user
 
 ### Game Service
 
-1. `GET /games/{id}`
+1. `GET /games/{gameId}`
    - Get game by ID
 2. `GET /games/{gameId}/leaderboard/{attribute}`
    - Get full leaderboard for a game and attribute
@@ -53,7 +53,7 @@
        "RankedAttributes": ["string"]
      }
      ```
-5. `PUT /games/{id}`
+5. `PUT /games/{gameId}`
    - Update an existing game
    - Input model:
      ```json
@@ -63,14 +63,14 @@
        "RankedAttributes": ["string"]
      }
      ```
-6. `DELETE /games/{id}`
+6. `DELETE /games/{gameId}`
    - Delete a game
 
 ### Match Service
 
 1. `GET /matches/{gameId}/{matchId}/{dateId}`
    - Get a specific match
-2. `GET /matches?game={gameId}&date={dateId}`
+2. `GET /matches?gameId={gameId}&dateId={dateId}`
    - Get all matches for a game on a specific date
 3. `POST /matches`
    - Create a new match
@@ -95,7 +95,7 @@
        }
      }
      ```
-4. `PUT /matches/{id}`
+4. `PUT /matches/{gameId}/{matchId}/{dateId}`
    - Update an existing match
    - Input model:
      ```json

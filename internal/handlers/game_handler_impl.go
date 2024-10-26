@@ -21,7 +21,7 @@ func NewGameHandlerImpl(gameService services.GameService) GameHandler {
 }
 
 func (h *GameHandlerImpl) GetGame(event events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-	gameID := models.GameID(event.PathParameters["id"])
+	gameID := models.GameID(event.PathParameters["gameId"])
 	game, err := h.gameService.GetGame(gameID)
 	if err != nil {
 		return events.APIGatewayProxyResponse{
@@ -140,7 +140,7 @@ func (h *GameHandlerImpl) UpdateGame(event events.APIGatewayProxyRequest) (event
 		}, nil
 	}
 
-	game.GameID = models.GameID(event.PathParameters["id"])
+	game.GameID = models.GameID(event.PathParameters["gameId"])
 
 	updatedGame, err := h.gameService.UpdateGame(&game)
 	if err != nil {
@@ -165,7 +165,7 @@ func (h *GameHandlerImpl) UpdateGame(event events.APIGatewayProxyRequest) (event
 }
 
 func (h *GameHandlerImpl) DeleteGame(event events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-	gameID := models.GameID(event.PathParameters["id"])
+	gameID := models.GameID(event.PathParameters["gameId"])
 
 	err := h.gameService.DeleteGame(gameID)
 	if err != nil {

@@ -1,14 +1,14 @@
 package models
 
 type LeaderBoard struct {
-	GameID        GameID         `json:"game_id"`
-	AttributeName AttributeName  `json:"attribute_name"`
-	UserIDs         []UserID       `json:"users"`
+	GameID        GameID         `json:"GameID"`
+	AttributeName AttributeName  `json:"AttributeName"`
+	UserIDs         []UserID       `json:"UserIDs"`
 }
 
 type BoundedLeaderboard struct {
 	LeaderBoard
-	Limit int            `json:"top_count"`
+	Limit int            `json:"Limit"`
 }
 
 func NewLeaderBoard(gameID GameID, attributeName AttributeName, userIDs []UserID) LeaderBoard {

@@ -17,7 +17,7 @@ Parameters:
     Description: The DynamoDB region
   ProdDynamoDBEndpoint:
     Type: String
-    Default: !Sub "https://dynamodb.${ProdDynamoDBRegion}.amazonaws.com"
+    Default: https://dynamodb.us-east-1.amazonaws.com
     Description: The DynamoDB endpoint (dynamically determined by region)
   DevDynamoDBTable:
     Type: String
@@ -31,11 +31,14 @@ Parameters:
     Type: String
     Default: http://host.docker.internal:8000
     Description: The DynamoDB endpoint
+  ExistingUserPoolId:
+    Type: String
+    Description: The ID of the existing Cognito User Pool
 
 Globals:
   Function:
     Timeout: 30
-    Runtime: go1.x
+    Runtime: provided.al2023
     Environment:
       Variables:
         APP_ENV: !Ref AppEnvironment
@@ -51,10 +54,22 @@ Globals:
           - IsProduction
           - !Ref ProdDynamoDBRegion
           - !Ref DevDynamoDBRegion
+  Api:
+    Auth:
+      DefaultAuthorizer: CognitoAuthorizer
+      Authorizers:
+        CognitoAuthorizer:
+          UserPoolArn: !Sub arn:aws:cognito-idp:${AWS::Region}:${AWS::AccountId}:userpool/${ExistingUserPoolId}
+          AuthorizationScopes:
+            - email
+            - openid
+
 
 Resources:
   UserFunction:
     Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: go1.x
     Properties:
       CodeUri: ./cmd/user/
       Handler: bootstrap.router
@@ -62,7 +77,7 @@ Resources:
         GetUser:
           Type: Api
           Properties:
-            Path: /users/{id}
+            Path: /users/{userId}
             Method: GET
         GetUsersByPrefix:
           Type: Api
@@ -82,19 +97,24 @@ Resources:
         UpdateUser:
           Type: Api
           Properties:
-            Path: /users/{id}
+            Path: /users/{userId}
             Method: PUT
         DeleteUser:
           Type: Api
           Properties:
-            Path: /users/{id}
+            Path: /users/{userId}
             Method: DELETE
       Policies:
         - DynamoDBCrudPolicy:
-            TableName: !Ref DynamoDBTable
+            TableName: !If 
+              - IsProduction
+              - !Ref ProdDynamoDBTable
+              - !Ref DevDynamoDBTable
 
   GameFunction:
     Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: go1.x
     Properties:
       CodeUri: ./cmd/game/
       Handler: bootstrap.router
@@ -102,7 +122,7 @@ Resources:
         GetGame:
           Type: Api
           Properties:
-            Path: /games/{id}
+            Path: /games/{gameId}
             Method: GET
         GetGameLeaderboard:
           Type: Api
@@ -117,19 +137,24 @@ Resources:
         UpdateGame:
           Type: Api
           Properties:
-            Path: /games/{id}
+            Path: /games/{gameId}
             Method: PUT
         DeleteGame:
           Type: Api
           Properties:
-            Path: /games/{id}
+            Path: /games/{gameId}
             Method: DELETE
       Policies:
         - DynamoDBCrudPolicy:
-            TableName: !Ref DynamoDBTable
+            TableName: !If 
+              - IsProduction
+              - !Ref ProdDynamoDBTable
+              - !Ref DevDynamoDBTable
 
   MatchFunction:
     Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: go1.x
     Properties:
       CodeUri: ./cmd/match/
       Handler: bootstrap.router
@@ -152,7 +177,7 @@ Resources:
         UpdateMatch:
           Type: Api
           Properties:
-            Path: /matches/{id}
+            Path: /matches/{gameId}/{matchId}/{dateId}
             Method: PUT
         DeleteMatch:
           Type: Api
@@ -161,7 +186,29 @@ Resources:
             Method: DELETE
       Policies:
         - DynamoDBCrudPolicy:
-            TableName: !Ref DynamoDBTable
+            TableName: !If 
+              - IsProduction
+              - !Ref ProdDynamoDBTable
+              - !Ref DevDynamoDBTable
+
+  CognitoUserPoolClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      UserPoolId: !Ref ExistingUserPoolId
+      ClientName: !Sub ${AWS::StackName}-UserPoolClient
+      GenerateSecret: false
+      ExplicitAuthFlows:
+        - ALLOW_USER_SRP_AUTH
+        - ALLOW_REFRESH_TOKEN_AUTH
+      EnableTokenRevocation: true
+      PreventUserExistenceErrors: ENABLED
+      AccessTokenValidity: 1
+      IdTokenValidity: 1
+      RefreshTokenValidity: 30
+      TokenValidityUnits:
+        AccessToken: hours
+        IdToken: hours
+        RefreshToken: days
 
 Outputs:
   UserFunction:
@@ -173,6 +220,12 @@ Outputs:
   MatchFunction:
     Description: "Match Lambda Function ARN"
     Value: !GetAtt MatchFunction.Arn
+  CognitoUserPoolId:
+    Description: "Cognito User Pool ID"
+    Value: !Ref ExistingUserPoolId
+  CognitoUserPoolClientId:
+    Description: "Cognito User Pool Client ID"
+    Value: !Ref CognitoUserPoolClient
 
 Conditions:
   IsProduction: !Equals 

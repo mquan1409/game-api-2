@@ -1,0 +1,62 @@
+{
+    "prod-table": [
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "GAME_INFO"},
+                    "Range": {"S": "soccer"},
+                    "Description": {"S": "Soccer"},
+                    "Attributes": {"L": [
+                        {"S": "elo"},
+                        {"S": "goals"},
+                        {"S": "assists"},
+                        {"S": "shots_on_target"},
+                        {"S": "passes_completed"}
+                    ]},
+                    "RankedAttributes": {"L": [
+                        {"S": "elo"}
+                    ]}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "GAME_INFO"},
+                    "Range": {"S": "pool"},
+                    "Description": {"S": "Pool"},
+                    "Attributes": {"L": [
+                        {"S": "elo"},
+                        {"S": "banks"},
+                        {"S": "pockets"},
+                        {"S": "breaks"},
+                        {"S": "safeties"}
+                    ]},
+                    "RankedAttributes": {"L": [
+                        {"S": "elo"}
+                    ]}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "GAME_INFO"},
+                    "Range": {"S": "pickleball"},
+                    "Description": {"S": "Pickleball"},
+                    "Attributes": {"L": [
+                        {"S": "elo"},
+                        {"S": "dinks"},
+                        {"S": "volleys"},
+                        {"S": "serves"},
+                        {"S": "third_shot_drops"}
+                    ]},
+                    "RankedAttributes": {"L": [
+                        {"S": "elo"}
+                    ]}
+                }
+            }
+        }
+    ]
+}
+
