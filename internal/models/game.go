@@ -3,10 +3,10 @@ package models
 import "errors"
 
 type Game struct {
-	GameID      GameID  `json:"game_id"`
-	Description string            `json:"description"`
-	Attributes  []AttributeName `json:"attributes"`
-	RankedAttributes []AttributeName `json:"ranked_attributes"`
+	GameID      GameID  `json:"GameID"`
+	Description string            `json:"Description"`
+	Attributes  []AttributeName `json:"Attributes"`
+	RankedAttributes []AttributeName `json:"RankedAttributes"`
 }
 
 func NewGame(id GameID, description string, attributes []AttributeName, rankedAttributes []AttributeName) (*Game, error) {

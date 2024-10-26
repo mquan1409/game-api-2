@@ -56,7 +56,7 @@ func TestMatchAPI(t *testing.T) {
 
 	// Test GetMatchesByGameAndDate
 	t.Run("GetMatchesByGameAndDate", func(t *testing.T) {
-		resp, err := http.Get(fmt.Sprintf("%s/matches?game=soccer&date=2023-06-01", baseURL))
+		resp, err := http.Get(fmt.Sprintf("%s/matches?gameId=soccer&dateId=2023-06-01", baseURL))
 		assert.NoError(t, err)
 		assert.Equal(t, http.StatusOK, resp.StatusCode)
 
@@ -141,7 +141,7 @@ func TestMatchAPI(t *testing.T) {
 		assert.NoError(t, err)
 		jsonMatch, _ := json.Marshal(updatedMatch)
 
-		req, _ := http.NewRequest(http.MethodPut, fmt.Sprintf("%s/matches/updatematch", baseURL), bytes.NewBuffer(jsonMatch))
+		req, _ := http.NewRequest(http.MethodPut, fmt.Sprintf("%s/matches/soccer/updatematch/2023-06-13", baseURL), bytes.NewBuffer(jsonMatch))
 		req.Header.Set("Content-Type", "application/json")
 		resp, err := http.DefaultClient.Do(req)
 		assert.NoError(t, err)
@@ -201,4 +201,3 @@ func TestMatchAPI(t *testing.T) {
 		assert.Equal(t, beforeScan, afterScan, "The database state has changed after running tests")
 	}
 }
-

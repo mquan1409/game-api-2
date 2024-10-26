@@ -3,13 +3,13 @@ package models
 import "errors"
 
 type Match struct {
-	MatchID MatchID `json:"match_id"`
-	DateID DateID `json:"date_id"`	
-	GameID GameID `json:"game_id"`
-	TeamNames []string `json:"team_names"`
-	TeamScores []int `json:"team_scores"`
-	TeamMembers [][]string `json:"team_members"`
-	PlayerAttributesMap map[UserID]AttributesStatsMap `json:"single_player_attributes"`
+	MatchID MatchID `json:"MatchID"`
+	DateID DateID `json:"DateID"`	
+	GameID GameID `json:"GameID"`
+	TeamNames []string `json:"TeamNames"`
+	TeamScores []int `json:"TeamScores"`
+	TeamMembers [][]string `json:"TeamMembers"`
+	PlayerAttributesMap map[UserID]AttributesStatsMap `json:"PlayerAttributesMap"`
 }
 
 func NewMatch(matchID MatchID, dateID DateID, gameID GameID, teamNames []string, teamScores []int, teamMembers [][]string, playerAttributesMap map[UserID]AttributesStatsMap) (*Match, error) {

@@ -64,8 +64,8 @@ func router(req events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, 
 			return matchHandler.CreateMatch(req)
 		}
 	case "PUT":
-		if len(pathParts) == 2 && pathParts[0] == "matches" {
-			// PUT /matches/{id}
+		if len(pathParts) == 4 && pathParts[0] == "matches" {
+			// PUT /matches/{gameId}/{matchId}/{dateId}
 			return matchHandler.UpdateMatch(req)
 		}
 	case "DELETE":

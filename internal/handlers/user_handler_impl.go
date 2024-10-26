@@ -18,7 +18,7 @@ func NewUserHandlerImpl(userService services.UserService) UserHandler {
 }
 
 func (h *UserHandlerImpl) GetUser(event events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-	userID := models.UserID(event.PathParameters["id"])
+	userID := models.UserID(event.PathParameters["userId"])
 	user, err := h.userService.GetUser(userID)
 	if err != nil {
 		return events.APIGatewayProxyResponse{
@@ -156,7 +156,7 @@ func (h *UserHandlerImpl) UpdateUser(event events.APIGatewayProxyRequest) (event
 }
 
 func (h *UserHandlerImpl) DeleteUser(event events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-	userID := models.UserID(event.PathParameters["id"])
+	userID := models.UserID(event.PathParameters["userId"])
 	err := h.userService.DeleteUser(&userID)
 	if err != nil {
 		return events.APIGatewayProxyResponse{

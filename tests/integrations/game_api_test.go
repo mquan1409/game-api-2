@@ -165,4 +165,3 @@ func TestGameAPI(t *testing.T) {
 		assert.Equal(t, beforeScan, afterScan, "The database state has changed after running tests")
 	}
 }
-

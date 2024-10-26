@@ -64,3 +64,5 @@ debug
 # Node modules (if you're using any JavaScript tools)
 node_modules/
 
+# samconfig
+samconfig.toml

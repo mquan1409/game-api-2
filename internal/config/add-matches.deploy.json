@@ -1,0 +1,191 @@
+{
+    "prod-table": [
+
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "MATCH_INFO.soccer"},
+                    "Range": {"S": "2023-06-01.match1"},
+                    "TeamNames": {"L": [
+                        {"S": "Team A"},
+                        {"S": "Team B"}
+                    ]},
+                    "TeamScores": {"L": [
+                        {"N": "2"},
+                        {"N": "1"}
+                    ]},
+                    "TeamMembers": {"L": [
+                        {"L": [
+                            {"S": "user1"},
+                            {"S": "user2"}
+                        ]},
+                        {"L": [
+                            {"S": "user3"},
+                            {"S": "dianadancer"}
+                        ]}
+                    ]},
+                    "PlayerAttributes": {
+                        "M": {
+                            "user1": {
+                                "M": {
+                                    "goals": {"N": "1"},
+                                    "assists": {"N": "1"},
+                                    "shots_on_target": {"N": "3"},
+                                    "passes_completed": {"N": "20"}
+                                }
+                            },
+                            "user2": {
+                                "M": {
+                                    "goals": {"N": "1"},
+                                    "assists": {"N": "0"},
+                                    "shots_on_target": {"N": "2"},
+                                    "passes_completed": {"N": "15"}
+                                }
+                            },
+                            "user3": {
+                                "M": {
+                                    "goals": {"N": "1"},
+                                    "assists": {"N": "0"},
+                                    "shots_on_target": {"N": "2"},
+                                    "passes_completed": {"N": "18"}
+                                }
+                            },
+                            "dianadancer": {
+                                "M": {
+                                    "goals": {"N": "0"},
+                                    "assists": {"N": "1"},
+                                    "shots_on_target": {"N": "1"},
+                                    "passes_completed": {"N": "22"}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "MATCH_INFO.pool"},
+                    "Range": {"S": "2023-06-02.match2"},
+                    "TeamNames": {"L": [
+                        {"S": "Team X"},
+                        {"S": "Team Y"}
+                    ]},
+                    "TeamScores": {"L": [
+                        {"N": "3"},
+                        {"N": "2"}
+                    ]},
+                    "TeamMembers": {"L": [
+                        {"L": [
+                            {"S": "user2"},
+                            {"S": "eveexplorer"}
+                        ]},
+                        {"L": [
+                            {"S": "user1"},
+                            {"S": "user3"}
+                        ]}
+                    ]},
+                    "PlayerAttributes": {
+                        "M": {
+                            "user1": {
+                                "M": {
+                                    "banks": {"N": "2"},
+                                    "pockets": {"N": "3"},
+                                    "breaks": {"N": "1"},
+                                    "safeties": {"N": "2"}
+                                }
+                            },
+                            "user2": {
+                                "M": {
+                                    "banks": {"N": "1"},
+                                    "pockets": {"N": "4"},
+                                    "breaks": {"N": "2"},
+                                    "safeties": {"N": "1"}
+                                }
+                            },
+                            "user3": {
+                                "M": {
+                                    "banks": {"N": "3"},
+                                    "pockets": {"N": "2"},
+                                    "breaks": {"N": "0"},
+                                    "safeties": {"N": "3"}
+                                }
+                            },
+                            "eveexplorer": {
+                                "M": {
+                                    "banks": {"N": "2"},
+                                    "pockets": {"N": "3"},
+                                    "breaks": {"N": "1"},
+                                    "safeties": {"N": "2"}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "Id": {"S": "MATCH_INFO.pickleball"},
+                    "Range": {"S": "2023-06-03.match3"},
+                    "TeamNames": {"L": [
+                        {"S": "Team Alpha"},
+                        {"S": "Team Beta"}
+                    ]},
+                    "TeamScores": {"L": [
+                        {"N": "11"},
+                        {"N": "9"}
+                    ]},
+                    "TeamMembers": {"L": [
+                        {"L": [
+                            {"S": "dianadancer"},
+                            {"S": "eveexplorer"}
+                        ]},
+                        {"L": [
+                            {"S": "user1"},
+                            {"S": "user2"}
+                        ]}
+                    ]},
+                    "PlayerAttributes": {
+                        "M": {
+                            "user1": {
+                                "M": {
+                                    "dinks": {"N": "5"},
+                                    "volleys": {"N": "7"},
+                                    "serves": {"N": "10"},
+                                    "third_shot_drops": {"N": "3"}
+                                }
+                            },
+                            "user2": {
+                                "M": {
+                                    "dinks": {"N": "6"},
+                                    "volleys": {"N": "8"},
+                                    "serves": {"N": "9"},
+                                    "third_shot_drops": {"N": "4"}
+                                }
+                            },
+                            "dianadancer": {
+                                "M": {
+                                    "dinks": {"N": "7"},
+                                    "volleys": {"N": "6"},
+                                    "serves": {"N": "11"},
+                                    "third_shot_drops": {"N": "5"}
+                                }
+                            },
+                            "eveexplorer": {
+                                "M": {
+                                    "dinks": {"N": "8"},
+                                    "volleys": {"N": "5"},
+                                    "serves": {"N": "10"},
+                                    "third_shot_drops": {"N": "6"}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}
