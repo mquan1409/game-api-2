@@ -55,6 +55,10 @@ Globals:
           - !Ref ProdDynamoDBRegion
           - !Ref DevDynamoDBRegion
   Api:
+    Cors:
+      AllowMethods: "'GET,POST,PUT,DELETE,OPTIONS'"
+      AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+      AllowOrigin: "'*'"
     Auth:
       DefaultAuthorizer: CognitoAuthorizer
       Authorizers:
